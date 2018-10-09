@@ -31,7 +31,7 @@ assignment_version = '1.0'
 
 ## Task 1 ###################################################################### 
 # Replace 999 with your student id
-student_id = 999
+student_id = 101210010
 
 ## Task 2 ######################################################################
 # Create an N by N 2D array with 1 on both diagonals and zeros everywhere else. 
@@ -43,7 +43,14 @@ student_id = 999
 #        [1, 0, 0, 1]])
 
 def xmatrix(N):
-    return np.zeros((N,N), dtype=int)
+    M = N-1
+    matrix = np.zeros((N,N), dtype=int)
+    for x in range(0,N):
+        matrix[x][x] = 1
+        matrix[M-x][x] = 1
+        matrix[x][M-x] = 1
+
+    return matrix
 
 ## Task 3 ######################################################################
 # Write a function that given a 2D array m finds the column with the lowest sum, 
@@ -68,7 +75,10 @@ def xmatrix(N):
 #    For example, for 1D array `b` if ix = b.argmin() then b[ix] == b.min()
 
 def min_row_col(m):
-    return 0, 0  # min_row_ix, min_col_ix
+    y_axis = m.sum(axis=0).argmin()
+    x_axis = m.sum(axis=1).argmin()
+
+    return x_axis, y_axis  # min_row_ix, min_col_ix
 
 ## Task 4 ###################################################################### 
 # The `car_data` array holds reading from a car dashboard. The first column is
@@ -81,6 +91,16 @@ def min_row_col(m):
 #
 # FYI: The RPM gauge is called "tachometer"
 def fix_gauge_bias(car_data, speed_bias, rpm_bias):
+
+    print(speed_bias)
+    print(rpm_bias)
+    print(car_data[:,0])
+    print(car_data[:,1])
+
+    car_data[:,0] -= speed_bias
+    car_data[:,1] -= rpm_bias
+    
+    print(car_data)
     return car_data
 
 ## Task 5
@@ -107,7 +127,14 @@ def fix_gauge_bias(car_data, speed_bias, rpm_bias):
 # such as continuously variable transmission (CVT) and the hybrid transmission
 # in Toyota Prius.
 def was_gear_switched(car_data):
-    return False
+    #find calculate ratio
+    ratio = car_data[:,1]/car_data[:,0]
+    anyAbove = (np.diff(ratio)>0)
+    print(anyAbove)
+    
+    anyBelow = (np.diff(ratio)<0)
+    print(anyBelow)
+    return np.logical_or(anyAbove,anyBelow).any()
 
 ## Task 6 (bonus) ##############################################################
 # With the same data and assumptions as Task 3 count how many different gears
@@ -121,7 +148,10 @@ def was_gear_switched(car_data):
 # HINT: take a look at np.unique() and array sort() functions, they might be
 # useful (depending on the strategy you choose).
 def count_gears_used(car_data):
-    return 1
+    ratio = car_data[:,1]/car_data[:,0]
+    print(ratio)
+    print(np.unique(ratio).size)
+    return np.unique(ratio).size
 
     
 
@@ -219,14 +249,14 @@ if __name__ == '__main__':
                         [  35.4, 3136 ]])
     s_bias = 1.8
     r_bias = 280
-    adjusted = fix_gauge_bias(gauges, s_bias, r_bias)
+    adjusted = fix_gauge_bias(gauges.copy(), s_bias, r_bias)
     d = gauges - adjusted
     print(OUT, 'fix_gauge_bias(gauges, ...)[0] = %s' % (adjusted[0],) )
     if adjusted.shape == gauges.shape and np.allclose(d[0], [s_bias, r_bias]):
         print(OK)
         total_score += 25
     else:
-        print(ERR, 'expected [%d, %d]' % (s_bias, r_bias))
+        print(ERR, 'expected [%f, %d]' % (s_bias, r_bias))
 
     print()
     print('####### Task5: was there a gear shift #############################')
