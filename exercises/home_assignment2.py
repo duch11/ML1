@@ -55,23 +55,29 @@ student_id = 101012100
 # Make sure to try edge cases, such as an empty table.
 # No need to check input validity.
 from typing import Dict, List
-def avgby(tbl: List, col, by):
-    dictionary = {
+def avgby(tbl: List, col: int, by: int):
+    dictionary: Dict = {
     }
-
-    print(type(dictionary))
-    print( len(tbl) )
+    dictIndices: Dict = {
+    }
 
     # go through rows
     for i in range( len(tbl) ):
         # get key for this row
-        key = tbl[i][by]
-        oldval = dictionary[key]
+        key: int = tbl[i][by]
+        keyvalue: int = tbl[i][col]
+        if key in dictionary:
+            oldval: int = dictionary[key]
+            dictionary[key] = oldval + keyvalue
+            dictIndices[key] = dictIndices[key] + 1
+        else:
+            dictionary[key] = keyvalue
+            dictIndices[key] = 1
         # on this row, add the column value to the total of the key it belongs to
-        dictionary[key] = oldval + tbl[i][col]
+
     # when done divide by no of rows
-    for value in dictionary:
-        value = value/len(tbl)
+    for key, value in dictionary.items():
+        dictionary[key] = value/dictIndices[key]
 
     return dictionary
 
