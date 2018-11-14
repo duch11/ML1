@@ -1,4 +1,4 @@
-################################################################################    
+################################################################################
 ## COMP3122 - Home assignment 2 - Due: Tuesday Nov 20, 23:59                  ##
 ################################################################################
 
@@ -18,8 +18,8 @@
 # General hints:
 #  - Brush up your memory about Python data types: List, Dict and Set
 #  - Feel free to define helper functions if you want to
-#  - Experiment with your code - computer is much faster than you at 
-#    interpreting code 
+#  - Experiment with your code - computer is much faster than you at
+#    interpreting code
 #  - Don't overthink
 #
 # Useful references
@@ -31,11 +31,11 @@ assignment_version = '1.0'
 
 ## Task 1 ######################################################################
 # Replace 999 with your student id
-student_id = 999
+student_id = 101012100
 
 
 ## Task 2 - Average-by #########################################################
-# You are only allowed to use the Python standard libraries for this task: 
+# You are only allowed to use the Python standard libraries for this task:
 # No NumPy, no Pandas !!!
 #
 # Given a table of data represented as a list of lists, compute the averages
@@ -54,35 +54,53 @@ student_id = 999
 #
 # Make sure to try edge cases, such as an empty table.
 # No need to check input validity.
-def avgby(tbl, col, by):
-    return {}
+from typing import Dict, List
+def avgby(tbl: List, col, by):
+    dictionary = {
+    }
+
+    print(type(dictionary))
+    print( len(tbl) )
+
+    # go through rows
+    for i in range( len(tbl) ):
+        # get key for this row
+        key = tbl[i][by]
+        oldval = dictionary[key]
+        # on this row, add the column value to the total of the key it belongs to
+        dictionary[key] = oldval + tbl[i][col]
+    # when done divide by no of rows
+    for value in dictionary:
+        value = value/len(tbl)
+
+    return dictionary
 
 
 ## Task 3 - Merge ##############################################################
-# You are only allowed to use the Python standard libraries for this task: 
+# You are only allowed to use the Python standard libraries for this task:
 # No NumPy, no Pandas !!!
 #
-# Write a merge function to implement a _inner_ join of two data tables each 
+# Write a merge function to implement a _inner_ join of two data tables each
 # represented as a list of rows where each row is a list.
 #
 # Inputs:
 #  - `left` and `right` - data tables
-#  - `left_on` and `right_on` - the column indices containing the key to merge 
+#  - `left_on` and `right_on` - the column indices containing the key to merge
 #     on in each of the tables.
-# 
+#
 # Example 1:
 # Merging on column 0 of each table (person name)
 # left = [['Bob', 'Accounting'],
 #         ['Jake', 'Engineering'],
 #         ['Lisa', 'HR']]
 # right = [['Lisa', 2004],
-#         ['Bob', 2008], 
-#         ['Jake', 2012], 
+#         ['Bob', 2008],
+#         ['Jake', 2012],
 #         ['Sue', 2014]]
 # merged =   [['Bob', 'Accounting', 'Bob', 2008],
 #             ['Jake', 'Engineering', 'Jake', 2012],
 #             ['Lisa', 'HR', 'Lisa', 2004]]
-#  
+#
 # Example 2:
 # Merging on columns 1 and 0, note that 'B' appears twice in the right table.
 # left = [[1, 'A'], [2, 'B'], [3, 'C']]
@@ -94,7 +112,7 @@ def avgby(tbl, col, by):
 #
 # "Inner join" means that only rows with data from both tables are returned.
 # Each row in the merged table should be the concatenation of corresponding
-# rows from the left and right tables. 
+# rows from the left and right tables.
 # In terms of Python lists:
 #     row_in_merged_tbl = row_from_left + row_from_right
 # where the following is true
@@ -125,7 +143,7 @@ if __name__ == '__main__':
         print(ERR, 'student_id not set')
     else:
         print(OK)
-    
+
     # This is for tests only, don't use NumPy in your solutions.
     import numpy as np
     import pandas as pd
@@ -163,7 +181,7 @@ if __name__ == '__main__':
         # Randomly decide which column to average
         avg_col = rng.randint(ncols)
 
-        # Change the 'by' column so that it contains multiple copies of the same 
+        # Change the 'by' column so that it contains multiple copies of the same
         # number, this way group by makes more sense.
         groupmod = rng.randint(1, nrows+2)
         arr[:, by] %= groupmod
@@ -201,7 +219,7 @@ if __name__ == '__main__':
         print(ERR, "merge([], [],...) should return and empty list")
 
     # 5 points for merge() not crashing so far.
-    task_score = 5 
+    task_score = 5
 
     # Function to compare your merge with Pandas merge :)
     def check_merged(merged, tbl1, tbl2, left_on, right_on):
@@ -227,7 +245,7 @@ if __name__ == '__main__':
             print (dfpd)
             return False
         # Sort by all columns to ensure the same order
-        dfpd = dfpd.sort_values(by=list(dfpd.columns)) 
+        dfpd = dfpd.sort_values(by=list(dfpd.columns))
         dfm = dfm.sort_values(by=list(dfm.columns))
         # Compare shapes first
         if dfpd.shape != dfm.shape:
@@ -261,7 +279,7 @@ if __name__ == '__main__':
     if check_merged(merged, tbl1, tbl2, left_on, right_on):
         print(OK)
         task_score += 10
- 
+
     print()
     print('Case 3 - empty merge:')
     tbl1 = [[1, 'A']]
