@@ -131,6 +131,11 @@ def avgby(tbl: List, col: int, by: int):
 
 def merge(left, right, left_on, right_on):
     merged = []
+    for left_row in left:
+        for right_row in right:
+            if right_row[right_on] == left_row[left_on]:
+                merged.append(left_row + right_row)
+
     return merged
 
 
