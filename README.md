@@ -118,6 +118,7 @@ This course assumes reasonable knowledge of Python, if you haven't used Python b
  ## Week 11
  * Lab - Nov 13
    * Exercise: [exercises/yelp.ipynb](exercises/yelp.ipynb) and [exercises/yelp.csv](exercises/yelp.csv)
+     * [Solutions](http://nbviewer.jupyter.org/url/kamrik.org/ML1/yelp_solutions.ipynb)
  * Lecture - Nov 15
    * [Slides](lectures/11_week.ipynb) (alternative link [via nbviewer](http://nbviewer.jupyter.org/github/kamrik/ML1/blob/master/lectures/11_week.ipynb))
    * [Intuitive Sensitivity & Specificity](https://www.youtube.com/watch?v=U4_3fditnWg) (video, 9min)
@@ -125,10 +126,38 @@ This course assumes reasonable knowledge of Python, if you haven't used Python b
 ## Week 12
  * Lab - Nov 20
    * Exercise: [exercises/credit_score.ipynb](exercises/credit_score.ipynb) - data is not in this repo.
+     * [Solutions](http://nbviewer.jupyter.org/url/kamrik.org/ML1/credit_score_solutions.ipynb)
  * Lecture - Nov 22
    * [Slides](lectures/12_week.ipynb) (alternative link [via nbviewer](http://nbviewer.jupyter.org/github/kamrik/ML1/blob/master/lectures/12_week.ipynb))
    * [Making sense of the confusion matrix](https://www.youtube.com/watch?v=8Oog7TXHvFY) (video, 35min)
    
 ## Home assignment 3
  * See instructions in [exercises/home_assignment3.md](exercises/home_assignment3.md)
+ 
+## Final exam prep advice
+ * Same format as the mid-term
+ * The exam will include material from the entire semester - do not neglect NumPy and Pandas basics
+ * Focus on lab exercises, exercises are always more important than reading
+ * Watch the videos linked from weekly sections above (or read the associated notebooks)
+ * We touched on all five chapters of the book by now. If the book works well for you, it's a great source to study from, but videos do cover all of the material as well.
+
+## Week 13
+ * Lab - Nov 27
+   * Exercise: [exercises/mpg_revisited.ipynb](exercises/mpg_revisited.ipynb)
+ * Lecture - Nov 29
+   * [Slides](lectures/13_week.ipynb) (alternative link [via nbviewer](http://nbviewer.jupyter.org/github/kamrik/ML1/blob/master/lectures/13_week.ipynb))
+<!--
+## Week 14
+ * Lab - Dec 4
+ * Lecture - Dec 6
+## Week 15
+ * Lab - Dec 11
+ * Lecture - Dec 13 - FINAL EXAM
+## Epilogue
+ * Next semster course
+ * [The Map of Machine Learning](http://work.caltech.edu/library/181.html) - video
+ * If you are interested in a more theoretically midned treatment of statistical ML
+   * Book: [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
+   * [Learning From Data](http://work.caltech.edu/telecourse.html) a course taught by Caltech Professor Yaser Abu-Mostafa 
+ -->
  
